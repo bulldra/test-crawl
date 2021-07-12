@@ -1,0 +1,24 @@
+name: pyetst
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/*'
+      - 'tests/*'
+      - 'config/*'
+      - '.github/workflows/*'
+  pull_request:
+    branches:
+        -main
+jobs:
+  unit-test:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    container: ghcr.io/${{ github.repository }}:latest
+    steps:
+      - run: pwd
+      - uses: actions/checkout@v2
+      - run: cp -r . /data
+      - run: pytest -s ./tests/
+        working-directory: /data

@@ -1,0 +1,2 @@
+init-hook="./src"
+init-hook="./tests"
